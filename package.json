@@ -1,0 +1,17 @@
+{
+  "name": "stripe-relay-lambda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/index.js",
+    "zip": "zip -r lambda.zip .env index.js node_modules/"
+  },
+  "keywords": ["stripe", "relay", "aws", "lambda", "microservice"],
+  "author": "Taylor Briggs <taylor.briggs.dev@gmail.com> (http://taylor-briggs.com)",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "2.0.0",
+    "stripe": "4.7.0"
+  }
+}
