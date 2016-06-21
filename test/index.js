@@ -9,15 +9,15 @@ var testCard = {
   cvc: '123'
 }
 
-var context = {
-  fail: function(err) {
-    console.error('Failed: ', err);
-  },
+var context = {};
 
-  succeed: function(response) {
-    console.log('Success: ', response);
+function handleResponse(err, data) {
+  if (err) {
+    console.error('Failed: ', err);
+  } else {
+    console.log('Succeeded: ', data);
   }
-};
+}
 
 stripe.tokens.create({ card: testCard }, function(err, token) {
   var event = {
@@ -35,5 +35,5 @@ stripe.tokens.create({ card: testCard }, function(err, token) {
     }
   };
 
-  return handler(event, context);
+  return handler(event, context, handleResponse);
 });

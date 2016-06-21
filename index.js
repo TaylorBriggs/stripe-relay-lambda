@@ -6,12 +6,11 @@ var OPTIONS = {
   type: 'sku'
 };
 
-exports.handler = function(event, context) {
-  var handleError = context.fail;
+exports.handler = function(event, context, callback) {
 
   function handleCustomer(err, customer) {
     if (err) {
-      handleError(err);
+      callback(err);
     } else {
       stripe.orders.create({
         currency: OPTIONS.currency,
@@ -23,9 +22,9 @@ exports.handler = function(event, context) {
         }]
       }, function(err, order) {
         if (err) {
-          handleError(err);
+          callback(err);
         } else {
-          context.succeed({ order: order });
+          callback(null, { order: order });
         }
       })
     }
